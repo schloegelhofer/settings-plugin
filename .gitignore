@@ -6,14 +6,4 @@ target/
 .idea/
 *.iml
 
-# Eclipse
-.project
-.classpath
-.settings/
 
-# OS-specific
-.DS_Store
-Thumbs.db
-
-# Atlassian Plugin SDK
-jira/plugins/target/
