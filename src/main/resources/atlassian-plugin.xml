@@ -1,24 +1,50 @@
-<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
-    <plugin-info>
-        <description>${project.description}</description>
-        <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}" />
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
-    </plugin-info>
+<?xml version="1.0" encoding="UTF-8"?>
 
-    <!-- add our i18n resource -->
-    <resource type="i18n" name="i18n" location="settings-plugin"/>
-    
-    <!-- add our web resources -->
-    <web-resource key="settings-plugin-resources" name="settings-plugin Web Resources">
-        <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
-        <resource type="download" name="settings-plugin.css" location="/css/settings-plugin.css"/>
-        <resource type="download" name="settings-plugin.js" location="/js/settings-plugin.js"/>
-        <resource type="download" name="images/" location="/images"/>
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2"> 
+  <plugin-info> 
+    <description>${project.description}</description>  
+    <version>${project.version}</version>  
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>  
+    <param name="plugin-icon">images/pluginIcon.png</param>  
+    <param name="plugin-logo">images/pluginLogo.png</param> 
+  </plugin-info>  
+  <!-- add our i18n resource -->  
+  <resource type="i18n" name="i18n" location="settings-plugin"/>  
+  <!-- add our web resources -->  
+  <web-resource key="settings-plugin-resources" name="settings-plugin Web Resources"> 
+    <dependency>com.atlassian.auiplugin:ajs</dependency>  
+    <resource type="download" name="settings-plugin.css" location="/css/settings-plugin.css"/>  
+    <resource type="download" name="settings-plugin.js" location="/js/settings-plugin.js"/>  
+    <resource type="download" name="images/" location="/images"/>  
+    <context>settings-plugin</context> 
+  </web-resource>
+  <servlet name="settings Servlet" key="settings-servlet" class="com.custom.plugins.servlet.SettingsServlet">
+    <description key="settings-servlet.description">Settings Servlet</description>
+    <url-pattern>/settings</url-pattern>
+  </servlet>
 
-        <context>settings-plugin</context>
-    </web-resource>
-    
+  <servlet name="PluginSettingsServlet" key="plugin-settings-servlet" class="com.custom.plugins.servlet.PluginSettingsServlet">
+    <description>Plugin Settings Servlet</description>
+    <url-pattern>/pluginSettings</url-pattern>
+  </servlet>
+
+
+  <web-section name="settings-section" key="settings-section" location="admin_system_menu" weight="1000">
+    <description key="settings-section.description">The settingsSection Plugin</description>
+    <label>Custom Plugin-Settings</label>
+  </web-section>
+  <web-item name="settings" key="settings" section="admin_system_menu/settings-section" weight="1000">
+    <description key="settings.description">The settings Plugin</description>  
+    <label>Instance Settings</label>
+    <link linkId="settings-link">/plugins/servlet/settings</link>
+  </web-item>
+
+  <web-item name="top-nav-settings" key="top-nav-settings" section="admin_system_menu/settings-section" weight="1000">
+    <description>Test Plugin Item</description>
+    <label>Plugins</label>
+    <link>/plugins/servlet/pluginSettings</link>
+  </web-item>
+
+
+
 </atlassian-plugin>

@@ -1,0 +1,11 @@
+<html lang="de">
+<head>
+    <title>Settings</title>
+    <meta name="decorator" content="atl.admin"/>
+
+</head>
+<body>
+    <h1>Plugins</h1>
+    <p>See your configurated Plugins</p>
+</body>
+</html>
